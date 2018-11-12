@@ -3,11 +3,20 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/content/site.css" />
     <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/site.css" />
 </head>
 <body>
+    <nav>
+        <div>
+            <div>
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Bethany's Pie Shop</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container body-content">
         <div class="row">
             @RenderBody()

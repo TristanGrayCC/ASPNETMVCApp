@@ -9,17 +9,19 @@ namespace ASPNETMVCApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPieRepository pieRespository;
+        private readonly IPieRepository _pieRepository;
 
         public HomeController(IPieRepository pieRepository)
         {
-            pieRespository = pieRepository;
+            _pieRepository = pieRepository;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var pies = pieRespository.GetAllPies().OrderBy(x => x.Name);
+            ViewBag.Title = "Pie overview";
+
+            var pies = _pieRepository.GetAllPies().OrderBy(x => x.Name);
 
             var homeViewModel = new HomeViewModel()
             {
@@ -28,6 +30,17 @@ namespace ASPNETMVCApp.Controllers
             };
 
             return View(homeViewModel);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var pie = _pieRepository.GetPieById(id);
+            if (pie == null)
+            {
+                return NotFound();
+            }
+
+            return View(pie);
         }
     }
 }
